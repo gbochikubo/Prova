@@ -25,6 +25,7 @@ class MaxHeap{
         inline bool cheio();
         inline bool vazio();
         Dado retiraRaiz();
+       // void heapSort(Dado vet[],int tam);
         void imprime();
 };
 
@@ -135,8 +136,8 @@ Dado MaxHeap :: retiraRaiz(){
     if(not vazio()){
         Dado aux = dado[0];
         swap(dado[0],dado[_tamanho-1]);
-        corrigeDescendo(0);
         _tamanho--;
+        corrigeDescendo(0);
         return aux;
     }
     else {
@@ -144,8 +145,15 @@ Dado MaxHeap :: retiraRaiz(){
         exit(EXIT_FAILURE);
     }
 }
-        
 
+void heapSort(Dado vet[],  int tam){
+        
+        MaxHeap *aux = new MaxHeap(vet,tam);
+        for(int i = tam-1 ; i >=0; i--){
+            
+            vet[i] = aux->retiraRaiz();
+        }
+}
 
             
         
@@ -158,13 +166,17 @@ int main (){
 
     Dado vet[] = {50,2,90,20,230,43,8,34,66,100,110,3,13};
     
-    MaxHeap *h = new MaxHeap(vet,tam);
+    //~ MaxHeap *h = new MaxHeap(vet,tam);
 	
-	h->imprime();
+    //~ for(int i = 0; i < 13; i++){
+        
+    //~ cout << h->retiraRaiz() << " ";
+   //~ }
+    heapSort(vet,tam);
+    for(int i = 0 ; i < 13; i++){
+        cout << vet[i] << " ";
+    }
     cout << endl;
-    cout << h->retiraRaiz();
-    cout << endl;
-    h->imprime();
     
     
 }
